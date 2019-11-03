@@ -5,12 +5,7 @@
 #Date: 10/18/19
 ###################################
 
-def get_unvisited_wrestler(graph):
-    for wrestler in graph:
-        if not graph[wrestler]['visited']:
-            return wrestler
 
-    return ""
 
 
 # Forms two teams using the assumption that all vertices with even distance are baby faces
@@ -46,6 +41,7 @@ def main():
         conC = 0
         conT = 0
         wrestlerNum = 0
+        wres = ""
         graph = {}
         
 
@@ -88,8 +84,18 @@ def main():
         finalDict["graph"] = graph
         finalDict["connections"] = connections
 
+    
         while True: 
-            wres = get_unvisited_wrestler(finalDict['graph'])
+            
+            gr = finalDict['graph']
+            
+            for w in gr:
+                if not gr[w]['visited']:
+                    wres = w
+                else:
+                    wres = ""
+
+    
 
             if wres == "":
                 break
